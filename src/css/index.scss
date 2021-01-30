@@ -182,24 +182,20 @@ body {
 .arrow {
   @include transition_md;
   &:hover {
-    -webkit-transform: scale(2.5);
-    -ms-transform: scale(2.5);
-    -o-transform: scale(2.5);
-    transform: scale(2.5);
+    @include scale(2.5, 0);
   }
 }
-
 
 /* MODULES - Individual style components */
 /* buttons */
 button {
   background-color: #d07c7c;
-  color: #ffffff;
+  color: $white;
   border: none;
   cursor: pointer;
   padding: 10px 30px;
   text-transform: uppercase;
-  @include fontSize (12px);
+  @include fontSize(12px);
   -webkit-transition: opacity 0.5s;
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s;
@@ -207,7 +203,6 @@ button {
     opacity: 0.6;
   }
 }
-
 
 .button-send {
   margin-top: 10px;
@@ -219,16 +214,15 @@ form {
   width: 100%;
   max-width: 550px;
   & p {
-    @include fontSize (12px);
+    @include fontSize(12px);
   }
 }
-
 
 input,
 textarea {
   display: block;
   width: 100%;
-  @include fontSize (12px);
+  @include fontSize(12px);
   outline: none;
   padding: 15px;
   color: #686868;
@@ -264,7 +258,7 @@ section .nav-main p {
 }
 
 figure {
-  position: relative;
+  position: $position_std;
   margin: 10px 0;
   cursor: pointer;
   display: inline-block;
@@ -272,32 +266,24 @@ figure {
   &:hover {
     .caption-head {
       &:before {
-        left: -20px;
-        top: -20px;
+        @include tl(-20px, -20px);
       }
       &:after {
-        right: -20px;
-        top: -20px;
+        @include tr(-20px, -20px);
       }
     }
     .caption-blurb {
       &:before {
-        left: -20px;
-        bottom: -20px;
+        @include bl(-20px, -20px);
       }
       &:after {
-        right: -20px;
-        bottom: -20px;
+        @include br(-20px, -20px);
       }
     }
   }
   &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @include before_after_size(100%, 100%);
+    @include tl(0, 0);
     background-color: #000;
     opacity: 0;
     @include transition;
@@ -314,74 +300,53 @@ figure {
   }
   & figcaption {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    @include tl(50%, 50%);
     min-width: 200px;
     @include translate;
-    color: #ffffff;
+    color: $white;
     line-height: 2;
     @include transition;
     &:before {
-      content: "";
-      position: absolute;
-      width: 80%;
-      height: 2px;
+      @include before_after_size(80%, 2px);
       top: -webkit-calc(50% + 2px);
       top: calc(50% + 2px);
       @include translate;
-      background-color: #ffffff;
+      background-color: $white;
     }
     & .caption-head {
-      position: relative;
+      position: $position_std;
       font-family: "Roboto";
       text-transform: uppercase;
-      font-size: 22px;
-      font-size: 1.375rem;
+
       &:before {
-        content: "";
-        position: absolute;
-        border-top: 2px solid #ffffff;
-        border-left: 2px solid #ffffff;
-        height: 20px;
-        width: 20px;
-        left: 0;
-        top: 0;
+        @include tl(0, 0);
+        border-top: $border_dimension;
+        border-left: $border_dimension;
+        @include before_after_size(20px, 20px);
         @include transition;
       }
       &:after {
-        content: "";
-        position: absolute;
-        border-top: 2px solid #ffffff;
-        border-right: 2px solid #ffffff;
-        height: 20px;
-        width: 20px;
-        right: 0;
-        top: 0;
+        @include tr(0, 0);
+        border-top: $border_dimension;
+        border-right: $border_dimension;
+        @include before_after_size(20px, 20px);
         @include transition;
       }
     }
     & .caption-blurb {
-      position: relative;
+      position: $position_std;
       &:before {
-        content: "";
-        position: absolute;
-        border-bottom: 2px solid #ffffff;
-        border-left: 2px solid #ffffff;
-        height: 20px;
-        width: 20px;
-        left: 0;
-        bottom: 0;
+        @include bl(0, 0);
+        border-bottom: $border_dimension;
+        border-left: $border_dimension;
+        @include before_after_size(20px, 20px);
         @include transition;
       }
       &:after {
-        content: "";
-        position: absolute;
-        border-bottom: 2px solid #ffffff;
-        border-right: 2px solid #ffffff;
-        height: 20px;
-        width: 20px;
-        right: 0;
-        bottom: 0;
+        @include br(0, 0);
+        border-bottom: $border_dimension;
+        border-right: $border_dimension;
+        @include before_after_size(20px, 20px);
         @include transition;
       }
     }
@@ -397,20 +362,16 @@ figure {
   height: 500px;
   background: url("https://i.imgur.com/0IRYG66.jpg") no-repeat;
   background-size: cover;
-  position: relative;
+  position: $position_std;
 }
 
 /*contact */
 #contact {
-  position: relative;
+  position: $position_std;
   &:before {
-    content: "";
-    position: absolute;
+    @include before_after_size(100%, 100%);
     display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @include tl(0, 0);
     background: url("https://image.ibb.co/h9qYHA/bg-video.png") no-repeat center
       center;
     opacity: 0.1;
@@ -420,19 +381,16 @@ figure {
 
 h2,
 h3 {
-  position: relative;
+  position: $position_std;
   font-family: "Roboto";
   text-transform: uppercase;
   padding-bottom: 14px;
   margin-bottom: 30px;
-  @include fontSize (22px);
+  @include fontSize(22px);
   &::after,
   &::after {
-    content: "";
-    position: absolute;
+    @include before_after_size(72px, 3px);
     display: block;
-    width: 72px;
-    height: 3px;
     left: -webkit-calc(50% - 36px);
     left: calc(50% - 36px);
     bottom: 0px;
@@ -446,10 +404,10 @@ h3 {
 
 /* LAYOUT  */
 header {
-  position: relative;
+  position: $position_std;
   background: url("https://image.ibb.co/jBXfxA/bg-contact.jpg") no-repeat center
     center/cover;
-  color: #ffffff;
+  color: $white;
   padding: 15% 0 0 0;
   min-height: 650px;
 }
@@ -470,17 +428,14 @@ h1 span:last-child {
 
 .title-sub {
   @include fontSize(48px);
-  position: relative;
+  position: $position_std;
   &::after {
-    content: "";
-    position: absolute;
+    @include before_after_size(82px, 3px);
     display: block;
-    width: 82px;
-    height: 3px;
     left: -webkit-calc(50% - 41px);
     left: calc(50% - 41px);
     bottom: -10px;
-    background: #ffffff;
+    background: $white;
   }
 }
 .title-blurb {
@@ -491,14 +446,12 @@ h1 span:last-child {
   }
 }
 
-
 .menu {
   color: #686868;
-  background: #ffffff;
+  background: $white;
   display: block;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  @include br(0, 0);
   width: 100%;
   line-height: 40px;
   vertical-align: middle;
@@ -507,7 +460,7 @@ h1 span:last-child {
 }
 
 h1 {
-  @include fontSize (22px);
+  @include fontSize(22px);
   display: inline-block;
 }
 
@@ -533,14 +486,12 @@ h1 {
   }
 }
 
-
-
 .nav-main {
   display: none;
   clear: both;
-  background: #ffffff;
+  background: $white;
   a {
-    position: relative;
+    position: $position_std;
     text-decoration: none;
     padding-bottom: 2px;
     @include transition_short;
@@ -548,17 +499,10 @@ h1 {
     width: 100%;
     padding: 20px 0;
     &::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 4px;
-      width: 100%;
+      @include before_after_size(100%, 4px);
+      @include bl(0, 0);
       background-color: #d07c7c;
-      -webkit-transform: scale(0, 1);
-      -ms-transform: scale(0, 1);
-      -o-transform: scale(0, 1);
-      transform: scale(0, 1);
+      @include scale(0, 1);
       -webkit-transform-origin: 0 50%;
       -ms-transform-origin: 0 50%;
       -o-transform-origin: 0 50%;
@@ -569,18 +513,11 @@ h1 {
       color: #d07c7c;
       font-weight: bold;
       &::before {
-        -webkit-transform: scale(1, 1);
-        -ms-transform: scale(1, 1);
-        -o-transform: scale(1, 1);
-        transform: scale(1, 1);
+        @include scale(1, 1);
       }
     }
   }
 }
- 
-
-
-
 
 footer .copy {
   margin-top: 20px;
@@ -588,7 +525,7 @@ footer .copy {
 
 @media (min-width: 500px) {
   .caption-blurb {
-    @include fontSize (18px);
+    @include fontSize(18px);
   }
 }
 
@@ -605,57 +542,58 @@ footer .copy {
   .figure-sm.one {
     margin-left: 4%;
   }
+}
 
-  @media (min-width: 992px) {
-    .nav-toggle {
-      display: none;
-    }
-    .nav-main {
-      display: block;
-      float: right;
-      width: 70%;
-    }
-    .nav-main ul {
-      text-align: right;
-    }
-    .nav-main li {
+@media (min-width: 992px) {
+  .nav-toggle {
+    display: none;
+  }
+  .nav-main {
+    display: block;
+    float: right;
+    width: 70%;
+  }
+  .nav-main ul {
+    text-align: right;
+  }
+  .nav-main li {
+    display: inline-block;
+    margin-left: 40px;
+  }
+  .nav-main a {
+    text-transform: uppercase;
+    padding: 0;
+  }
+  .work-column-lg {
+    display: block;
+    width: 61.5%;
+    float: left;
+  }
+  .work-column-sm {
+    display: block;
+    width: 35.5%;
+    float: left;
+    margin-left: 3%;
+  }
+  .work-column-sm img {
+    height: auto;
+  }
+  form {
+    padding-bottom: 40px;
+    p {
       display: inline-block;
-      margin-left: 40px;
-    }
-    .nav-main a {
-      text-transform: uppercase;
-      padding: 0;
-    }
-    .work-column-lg {
-      display: block;
-      width: 61.5%;
       float: left;
     }
-    .work-column-sm {
-      display: block;
-      width: 35.5%;
-      float: left;
-      margin-left: 3%;
-    }
-    .work-column-sm img {
-      height: auto;
-    }
-    form {
-      padding-bottom: 40px;
-    }
-    form p {
-      display: inline-block;
-      float: left;
-    }
-    form .button-send {
+    .button-send {
       float: right;
       margin-top: 0;
     }
-    .text-center form p,
-    h2 form p,
-    h3 form p,
-    .nav-main form p {
-      margin-top: 10px;
-    }
+  }
+
+  .text-center form p,
+  h2 form p,
+  h3 form p,
+  .nav-main form p {
+    margin-top: 10px;
   }
 }
