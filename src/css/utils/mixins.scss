@@ -1,23 +1,7 @@
-@mixin translate() {
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-@mixin transition() {
-  -webkit-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-}
-@mixin transition_short() {
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
-@mixin transition_md() {
-  -webkit-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -o-transition: $args;
+  transition: $args;
 }
 @mixin fontSize($fontSize) {
   font-size: $fontSize;
@@ -29,12 +13,21 @@
   content: "";
   position: absolute;
 }
+// tranforms======
+@mixin translate() {
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 @mixin scale($x, $y) {
   -webkit-transform: scale($x, $y);
   -ms-transform: scale($x, $y);
   -o-transform: scale($x, $y);
   transform: scale($x, $y);
 }
+
+// position======
 @mixin tl($t, $l) {
   top: $t;
   left: $l;

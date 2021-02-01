@@ -180,7 +180,7 @@ body {
 }
 
 .arrow {
-  @include transition_md;
+  @include transition(all 0.5s ease);
   &:hover {
     @include scale(2.5, 0);
   }
@@ -196,9 +196,7 @@ button {
   padding: 10px 30px;
   text-transform: uppercase;
   @include fontSize(12px);
-  -webkit-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+  @include transition(opacity 0.5s ease);
   &:hover {
     opacity: 0.6;
   }
@@ -286,7 +284,7 @@ figure {
     @include tl(0, 0);
     background-color: #000;
     opacity: 0;
-    @include transition;
+    @include transition(all 1s ease-in-out);
   }
   &:hover:before {
     opacity: 0.7;
@@ -305,7 +303,7 @@ figure {
     @include translate;
     color: $white;
     line-height: 2;
-    @include transition;
+    @include transition(all 1s ease-in-out);
     &:before {
       @include before_after_size(80%, 2px);
       top: -webkit-calc(50% + 2px);
@@ -323,14 +321,14 @@ figure {
         border-top: $border_dimension;
         border-left: $border_dimension;
         @include before_after_size(20px, 20px);
-        @include transition;
+        @include transition(all 1s ease-in-out);
       }
       &:after {
         @include tr(0, 0);
         border-top: $border_dimension;
         border-right: $border_dimension;
         @include before_after_size(20px, 20px);
-        @include transition;
+        @include transition(all 1s ease-in-out);
       }
     }
     & .caption-blurb {
@@ -340,14 +338,14 @@ figure {
         border-bottom: $border_dimension;
         border-left: $border_dimension;
         @include before_after_size(20px, 20px);
-        @include transition;
+        @include transition(all 1s ease-in-out);
       }
       &:after {
         @include br(0, 0);
         border-bottom: $border_dimension;
         border-right: $border_dimension;
         @include before_after_size(20px, 20px);
-        @include transition;
+        @include transition(all 1s ease-in-out);
       }
     }
   }
@@ -470,16 +468,14 @@ h1 {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+
   div {
     display: block;
     width: 40px;
     height: 3px;
     margin-top: 7px;
     background-color: #686868;
-    @include transition_md;
+    @include transition(all 0.5s ease);
   }
   &:hover {
     opacity: 0.7;
@@ -494,7 +490,7 @@ h1 {
     position: $position_std;
     text-decoration: none;
     padding-bottom: 2px;
-    @include transition_short;
+    @include transition(all 0.3s ease);
     display: block;
     width: 100%;
     padding: 20px 0;
@@ -507,7 +503,7 @@ h1 {
       -ms-transform-origin: 0 50%;
       -o-transform-origin: 0 50%;
       transform-origin: 0 50%;
-      @include transition_short;
+      @include transition(all 0.3s ease);
     }
     &:hover {
       color: #d07c7c;
