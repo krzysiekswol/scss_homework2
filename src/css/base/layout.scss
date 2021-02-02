@@ -1,0 +1,454 @@
+// General Rules
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 20px;
+  font: inherit;
+  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+// HTML5 display-role reset for older browsers
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote {
+  quotes: none;
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+
+q {
+  @extend blockquote;
+  &:before,
+  &:after {
+    content: "";
+    content: none;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  width: 100%;
+  clear: both;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: "Roboto";
+  overflow-x: hidden;
+  width: 100%;
+  padding: 25px;
+  line-height: 1.5;
+  color: #686868;
+  line-height: 1;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.arrow {
+  @include transition(all 0.5s ease);
+  &:hover {
+    @include scale(2.5, 0);
+  }
+}
+
+// MODULES - Individual style components
+// buttons
+button {
+  background-color: #d07c7c;
+  color: $white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  @include fontSize(12px);
+  @include transition(opacity 0.5s ease);
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.button-send {
+  margin-top: 10px;
+}
+
+// form
+form {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 550px;
+  & p {
+    @include fontSize(12px);
+  }
+  input {
+    display: block;
+    width: 100%;
+    @include fontSize(12px);
+    outline: none;
+    padding: 15px;
+    color: #686868;
+    border: 2px solid #d07c7c;
+    margin-bottom: 20px;
+  }
+  textarea {
+    @extend input;
+    resize: none;
+  }
+}
+
+section {
+  padding: 50px 0;
+}
+
+/* work */
+.work-wrap:before {
+  content: " ";
+  display: table;
+}
+
+.work-wrap:after {
+  @extend .work-wrap:before;
+  clear: both;
+}
+
+figure {
+  position: $position_std;
+  margin: 10px 0;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  &:hover {
+    .caption-head {
+      &:before {
+        @include tl(-20px, -20px);
+      }
+      &:after {
+        @include tr(-20px, -20px);
+      }
+    }
+    .caption-blurb {
+      &:before {
+        @include bl(-20px, -20px);
+      }
+      &:after {
+        @include br(-20px, -20px);
+      }
+    }
+  }
+  &:before {
+    @include before_after_size(100%, 100%);
+    @include tl(0, 0);
+    background-color: #000;
+    opacity: 0;
+    @include transition(all 1s ease-in-out);
+  }
+  &:hover:before {
+    opacity: 0.7;
+  }
+  & img {
+    width: 100%;
+    display: block;
+  }
+  & figcaption {
+    position: absolute;
+    @include tl(50%, 50%);
+    min-width: 200px;
+    @include translate;
+    color: $white;
+    line-height: 2;
+    @include transition(all 1s ease-in-out);
+    &:before {
+      @include before_after_size(80%, 2px);
+      top: -webkit-calc(50% + 2px);
+      top: calc(50% + 2px);
+      @include translate;
+      background-color: $white;
+    }
+    & .caption-head {
+      position: $position_std;
+      font-family: "Roboto";
+      text-transform: uppercase;
+
+      &:before {
+        @include tl(0, 0);
+        border-top: $border_dimension;
+        border-left: $border_dimension;
+        @include before_after_size(20px, 20px);
+        @include transition(all 1s ease-in-out);
+      }
+      &:after {
+        @include tr(0, 0);
+        border-top: $border_dimension;
+        border-right: $border_dimension;
+        @include before_after_size(20px, 20px);
+        @include transition(all 1s ease-in-out);
+      }
+    }
+    & .caption-blurb {
+      position: $position_std;
+      &:before {
+        @include bl(0, 0);
+        border-bottom: $border_dimension;
+        border-left: $border_dimension;
+        @include before_after_size(20px, 20px);
+        @include transition(all 1s ease-in-out);
+      }
+      &:after {
+        @include br(0, 0);
+        border-bottom: $border_dimension;
+        border-right: $border_dimension;
+        @include before_after_size(20px, 20px);
+        @include transition(all 1s ease-in-out);
+      }
+    }
+  }
+}
+
+#testimonials {
+  padding: 5px 0;
+}
+
+// video
+.video {
+  height: 500px;
+  background: url("https://i.imgur.com/0IRYG66.jpg") no-repeat;
+  background-size: cover;
+  position: $position_std;
+}
+
+//contact
+#contact {
+  position: $position_std;
+  &:before {
+    @include before_after_size(100%, 100%);
+    display: block;
+    @include tl(0, 0);
+    background: url("https://image.ibb.co/h9qYHA/bg-video.png") no-repeat center
+      center;
+    opacity: 0.1;
+    z-index: -1;
+  }
+}
+// LAYOUT
+header {
+  position: $position_std;
+  background: url("https://image.ibb.co/jBXfxA/bg-contact.jpg") no-repeat center
+    center/cover;
+  color: $white;
+  padding: 15% 0 0 0;
+  min-height: 650px;
+}
+
+.title-main {
+  line-height: 1.2;
+  @include fontSize(30px);
+  & span {
+    display: block;
+    &:last-child {
+      @include fontSize(23px);
+    }
+  }
+}
+.title-sub {
+  @include fontSize(48px);
+  position: $position_std;
+  &::after {
+    @include before_after_size(82px, 3px);
+    display: block;
+    left: -webkit-calc(50% - 41px);
+    left: calc(50% - 41px);
+    bottom: -10px;
+    background: $white;
+  }
+}
+.title-blurb {
+  padding: 40px 0;
+  span {
+    display: block;
+    line-height: 25px;
+  }
+}
+
+.menu {
+  color: #686868;
+  background: $white;
+  display: block;
+  position: absolute;
+  @include br(0, 0);
+  width: 100%;
+  line-height: 40px;
+  // vertical-align: middle;
+  padding: 10px;
+  border-bottom: 2px solid rgba(104, 104, 104, 0.1);
+}
+
+.nav-toggle {
+  // display: inline-block;
+  float: right;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  @include transition(all 0.5s ease);
+  div {
+    display: block;
+    width: 40px;
+    height: 3px;
+    margin-top: 7px;
+    background-color: #686868;
+    @include transition(all 0.5s ease);
+  }
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.nav-main {
+  display: none;
+  clear: both;
+  background: $white;
+  a {
+    position: $position_std;
+    text-decoration: none;
+    padding-bottom: 2px;
+    @include transition(all 0.3s ease);
+    display: block;
+    width: 100%;
+    padding: 20px 0;
+    &::before {
+      @include before_after_size(100%, 4px);
+      @include bl(0, 0);
+      background-color: #d07c7c;
+      @include scale(0, 1);
+      -webkit-transform-origin: 0 50%;
+      -ms-transform-origin: 0 50%;
+      -o-transform-origin: 0 50%;
+      transform-origin: 0 50%;
+      @include transition(all 0.3s ease);
+    }
+    &:hover {
+      color: #d07c7c;
+      font-weight: bold;
+      &::before {
+        @include scale(1, 1);
+      }
+    }
+  }
+}
+
+footer .copy {
+  margin-top: 20px;
+}
+// Media Queries
+@media (min-width: $breakpoint_sm) {
+  .caption-blurb {
+    @include fontSize(18px);
+  }
+}
+
+@media (min-width: $breakpoint_md) {
+  header {
+    min-height: 95vh;
+    padding-top: 14em;
+  }
+  .figure-sm {
+    width: 48%;
+    display: block;
+    float: left;
+  }
+  .figure-sm.one {
+    margin-left: 4%;
+  }
+}
+@media (min-width: $breakpoint_lg) {
+  .nav-toggle {
+    display: none;
+  }
+  .nav-main {
+    display: block;
+    float: right;
+    width: 70%;
+    ul {
+      text-align: right;
+    }
+    li {
+      display: inline-block;
+      margin-left: 40px;
+    }
+    a {
+      text-transform: uppercase;
+      padding: 0;
+    }
+  }
+  .work-column-lg {
+    display: block;
+    width: 61.5%;
+    float: left;
+  }
+  .work-column-sm {
+    display: block;
+    width: 35.5%;
+    float: left;
+    margin-left: 3%;
+  }
+  .work-column-sm img {
+    height: auto;
+  }
+  form {
+    padding-bottom: 40px;
+    p {
+      // display: inline-block;
+      float: left;
+    }
+    .button-send {
+      float: right;
+      margin-top: 0;
+    }
+  }
+
+  .text-center form p,
+  h2 form p,
+  h3 form p,
+  .nav-main form p {
+    margin-top: 10px;
+  }
+}
