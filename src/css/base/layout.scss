@@ -1,16 +1,94 @@
-// General Rules
-* {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 20px;
   font: inherit;
   vertical-align: baseline;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
-// HTML5 display-role reset for older browsers
+
+/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -25,32 +103,37 @@ section {
   display: block;
 }
 
+body {
+  line-height: 1;
+}
+
 ol,
 ul {
   list-style: none;
 }
 
-blockquote {
+blockquote,
+q {
   quotes: none;
-  &:before,
-  &:after {
-    content: "";
-    content: none;
-  }
 }
 
-q {
-  @extend blockquote;
-  &:before,
-  &:after {
-    content: "";
-    content: none;
-  }
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 a {
@@ -64,20 +147,19 @@ a {
   width: 100%;
   clear: both;
 }
-
+// ==========================================
 html {
   overflow-x: hidden;
   width: 100%;
 }
 
 body {
-  font-family: "Roboto";
+  font-family: $font;
   overflow-x: hidden;
   width: 100%;
   padding: 25px;
   line-height: 1.5;
-  color: #686868;
-  line-height: 1;
+  color: $dark-color;
 }
 
 .container {
@@ -85,24 +167,36 @@ body {
   margin: 0 auto;
   max-width: 1200px;
 }
+
+.text-center,
+.social-wrap,
+h2,
+h3,
+.nav-main {
+  text-align: center;
+}
+
 .arrow {
-  @include transition(all 0.5s ease);
+  @include transition(all 0.5s);
   &:hover {
-    @include scale(2.5, 0);
+    -webkit-transform: scale(2.5);
+    -ms-transform: scale(2.5);
+    -o-transform: scale(2.5);
+    transform: scale(2.5);
   }
 }
 
-// MODULES - Individual style components
-// buttons
+/* MODULES - Individual style components */
+/* buttons */
 button {
-  background-color: #d07c7c;
+  background-color: $bgc-std-color;
   color: $white;
   border: none;
   cursor: pointer;
   padding: 10px 30px;
   text-transform: uppercase;
   @include fontSize(12px);
-  @include transition(opacity 0.5s ease);
+  @include transition(opacity 0.5s);
   &:hover {
     opacity: 0.6;
   }
@@ -112,134 +206,185 @@ button {
   margin-top: 10px;
 }
 
-// form
+/* form */
 form {
   margin: 20px auto;
   width: 100%;
   max-width: 550px;
-  & p {
+  p {
     @include fontSize(12px);
   }
-  input {
-    display: block;
-    width: 100%;
-    @include fontSize(12px);
-    outline: none;
-    padding: 15px;
-    color: #686868;
-    border: 2px solid #d07c7c;
-    margin-bottom: 20px;
-  }
-  textarea {
-    @extend input;
-    resize: none;
-  }
+}
+
+input {
+  display: block;
+  width: 100%;
+  @include fontSize(12px);
+  outline: none;
+  padding: 15px;
+  color: $dark-color;
+  border: $border_dimension #d07c7c;
+  margin-bottom: 20px;
+}
+
+textarea {
+  @extend input;
+  resize: none;
 }
 
 section {
   padding: 50px 0;
 }
+section .text-center p,
+section h2 p,
+section h3 p,
+section .nav-main p {
+  padding: 0 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
 /* work */
-.work-wrap:before {
+.work-wrap:before,
+.work-wrap:after {
   content: " ";
   display: table;
 }
 
 .work-wrap:after {
-  @extend .work-wrap:before;
   clear: both;
 }
 
 figure {
-  position: $position_std;
+  position: relative;
   margin: 10px 0;
   cursor: pointer;
   display: inline-block;
   width: 100%;
-  &:hover {
-    .caption-head {
-      &:before {
-        @include tl(-20px, -20px);
-      }
-      &:after {
-        @include tr(-20px, -20px);
-      }
-    }
-    .caption-blurb {
-      &:before {
-        @include bl(-20px, -20px);
-      }
-      &:after {
-        @include br(-20px, -20px);
-      }
-    }
-  }
   &:before {
-    @include before_after_size(100%, 100%);
-    @include tl(0, 0);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: #000;
     opacity: 0;
     @include transition(all 1s ease-in-out);
   }
-  &:hover:before {
+}
+
+figure:hover {
+  &:before {
     opacity: 0.7;
   }
-  & img {
+}
+figure:hover {
+  .caption-head {
+    &:before {
+      left: -20px;
+      top: -20px;
+    }
+    &:after {
+      right: -20px;
+      top: -20px;
+    }
+  }
+  .caption-blurb {
+    &:after {
+      right: -20px;
+      bottom: -20px;
+    }
+  }
+}
+
+figure {
+  img {
     width: 100%;
     display: block;
   }
-  & figcaption {
+  figcaption {
     position: absolute;
-    @include tl(50%, 50%);
+    top: 50%;
+    left: 50%;
     min-width: 200px;
-    @include translate;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     color: $white;
     line-height: 2;
     @include transition(all 1s ease-in-out);
     &:before {
-      @include before_after_size(80%, 2px);
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 2px;
       top: -webkit-calc(50% + 2px);
       top: calc(50% + 2px);
-      @include translate;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
       background-color: $white;
     }
-    & .caption-head {
-      position: $position_std;
-      font-family: "Roboto";
-      text-transform: uppercase;
+  }
+}
 
-      &:before {
-        @include tl(0, 0);
-        border-top: $border_dimension;
-        border-left: $border_dimension;
-        @include before_after_size(20px, 20px);
-        @include transition(all 1s ease-in-out);
-      }
-      &:after {
-        @include tr(0, 0);
-        border-top: $border_dimension;
-        border-right: $border_dimension;
-        @include before_after_size(20px, 20px);
-        @include transition(all 1s ease-in-out);
-      }
+figure figcaption {
+  .caption-head {
+    position: relative;
+    font-family: $font;
+    text-transform: uppercase;
+
+    font-size: 22px;
+    font-size: 1.375rem;
+    &:before {
+      content: "";
+      position: absolute;
+      border-top: $border_dimension $white;
+      border-left: $border_dimension $white;
+      height: 20px;
+      width: 20px;
+      left: 0;
+      top: 0;
+      @include transition(all 1s ease-in-out);
     }
-    & .caption-blurb {
-      position: $position_std;
-      &:before {
-        @include bl(0, 0);
-        border-bottom: $border_dimension;
-        border-left: $border_dimension;
-        @include before_after_size(20px, 20px);
-        @include transition(all 1s ease-in-out);
-      }
-      &:after {
-        @include br(0, 0);
-        border-bottom: $border_dimension;
-        border-right: $border_dimension;
-        @include before_after_size(20px, 20px);
-        @include transition(all 1s ease-in-out);
-      }
+    &:after {
+      content: "";
+      position: absolute;
+      border-top: $border_dimension $white;
+      border-right: $border_dimension $white;
+      height: 20px;
+      width: 20px;
+      right: 0;
+      top: 0;
+      @include transition(all 1s ease-in-out);
+    }
+  }
+  .caption-blurb {
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      border-bottom: $border_dimension $white;
+      border-left: $border_dimension $white;
+      height: 20px;
+      width: 20px;
+      left: 0;
+      bottom: 0;
+      @include transition(all 1s ease-in-out);
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      border-bottom: $border_dimension $white;
+      border-right: $border_dimension $white;
+      height: 20px;
+      width: 20px;
+      right: 0;
+      bottom: 0;
+      @include transition(all 1s ease-in-out);
     }
   }
 }
@@ -248,144 +393,214 @@ figure {
   padding: 5px 0;
 }
 
-// video
+/* video*/
 .video {
   height: 500px;
   background: url("https://i.imgur.com/0IRYG66.jpg") no-repeat;
   background-size: cover;
-  position: $position_std;
+  position: relative;
 }
 
-//contact
+/*contact */
 #contact {
-  position: $position_std;
-  &:before {
-    @include before_after_size(100%, 100%);
-    display: block;
-    @include tl(0, 0);
-    background: url("https://image.ibb.co/h9qYHA/bg-video.png") no-repeat center
-      center;
-    opacity: 0.1;
-    z-index: -1;
-  }
+  position: relative;
 }
-// LAYOUT
+#contact:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://image.ibb.co/h9qYHA/bg-video.png") no-repeat center
+    center;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+h2,
+h3 {
+  position: relative;
+  font-family: "Roboto";
+  text-transform: uppercase;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  font-size: 22px;
+  font-size: 1.375rem;
+}
+h2:after,
+h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 72px;
+  height: 3px;
+  left: -webkit-calc(50% - 36px);
+  left: calc(50% - 36px);
+  bottom: 0px;
+  background: #d07c7c;
+}
+
+h3 {
+  text-transform: none;
+}
+
+/* LAYOUT  */
 header {
-  position: $position_std;
+  position: relative;
   background: url("https://image.ibb.co/jBXfxA/bg-contact.jpg") no-repeat center
     center/cover;
-  color: $white;
+  color: #ffffff;
   padding: 15% 0 0 0;
   min-height: 650px;
 }
 
-.title-main {
+.title-main,
+h1 {
   line-height: 1.2;
-  @include fontSize(30px);
-  & span {
-    display: block;
-    &:last-child {
-      @include fontSize(23px);
-    }
-  }
+  font-size: 30px;
+  font-size: 1.875rem;
 }
+.title-main span,
+h1 span {
+  display: block;
+}
+.title-main span:last-child,
+h1 span:last-child {
+  font-size: 23px;
+  font-size: 1.4375rem;
+}
+
 .title-sub {
-  @include fontSize(48px);
-  position: $position_std;
-  &::after {
-    @include before_after_size(82px, 3px);
-    display: block;
-    left: -webkit-calc(50% - 41px);
-    left: calc(50% - 41px);
-    bottom: -10px;
-    background: $white;
-  }
+  font-size: 48px;
+  font-size: 3rem;
+  position: relative;
 }
+
+.title-sub:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 82px;
+  height: 3px;
+  left: -webkit-calc(50% - 41px);
+  left: calc(50% - 41px);
+  bottom: -10px;
+  background: #ffffff;
+}
+
 .title-blurb {
   padding: 40px 0;
-  span {
-    display: block;
-    line-height: 25px;
-  }
+}
+.title-blurb span {
+  display: block;
+  line-height: 25px;
 }
 
 .menu {
   color: #686868;
-  background: $white;
+  background: #ffffff;
   display: block;
   position: absolute;
-  @include br(0, 0);
+  right: 0;
+  bottom: 0;
   width: 100%;
   line-height: 40px;
-  // vertical-align: middle;
+  vertical-align: middle;
   padding: 10px;
   border-bottom: 2px solid rgba(104, 104, 104, 0.1);
 }
 
+h1 {
+  font-size: 22px;
+  font-size: 1.375rem;
+  display: inline-block;
+}
+
 .nav-toggle {
-  // display: inline-block;
+  display: inline-block;
   float: right;
   width: 40px;
   height: 40px;
   cursor: pointer;
-  @include transition(all 0.5s ease);
-  div {
-    display: block;
-    width: 40px;
-    height: 3px;
-    margin-top: 7px;
-    background-color: #686868;
-    @include transition(all 0.5s ease);
-  }
-  &:hover {
-    opacity: 0.7;
-  }
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.nav-toggle div {
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin-top: 7px;
+  background-color: #686868;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.nav-toggle:hover {
+  opacity: 0.7;
 }
 
 .nav-main {
   display: none;
   clear: both;
-  background: $white;
-  a {
-    position: $position_std;
-    text-decoration: none;
-    padding-bottom: 2px;
-    @include transition(all 0.3s ease);
-    display: block;
-    width: 100%;
-    padding: 20px 0;
-    &::before {
-      @include before_after_size(100%, 4px);
-      @include bl(0, 0);
-      background-color: #d07c7c;
-      @include scale(0, 1);
-      -webkit-transform-origin: 0 50%;
-      -ms-transform-origin: 0 50%;
-      -o-transform-origin: 0 50%;
-      transform-origin: 0 50%;
-      @include transition(all 0.3s ease);
-    }
-    &:hover {
-      color: #d07c7c;
-      font-weight: bold;
-      &::before {
-        @include scale(1, 1);
-      }
-    }
-  }
+  background: #ffffff;
+}
+.nav-main a {
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 2px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  display: block;
+  width: 100%;
+  padding: 20px 0;
+}
+.nav-main a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #d07c7c;
+  -webkit-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  -o-transform: scale(0, 1);
+  transform: scale(0, 1);
+  -webkit-transform-origin: 0 50%;
+  -ms-transform-origin: 0 50%;
+  -o-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+.nav-main a:hover {
+  color: #d07c7c;
+  font-weight: bold;
+}
+.nav-main a:hover::before {
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
 }
 
 footer .copy {
   margin-top: 20px;
 }
-// Media Queries
-@media (min-width: $breakpoint_sm) {
+
+@media (min-width: 500px) {
   .caption-blurb {
-    @include fontSize(18px);
+    font-size: 18px;
+    font-size: 1.125rem;
   }
 }
 
-@media (min-width: $breakpoint_md) {
+@media (min-width: 768px) {
   header {
     min-height: 95vh;
     padding-top: 14em;
@@ -399,7 +614,8 @@ footer .copy {
     margin-left: 4%;
   }
 }
-@media (min-width: $breakpoint_lg) {
+
+@media (min-width: 992px) {
   .nav-toggle {
     display: none;
   }
@@ -407,17 +623,17 @@ footer .copy {
     display: block;
     float: right;
     width: 70%;
-    ul {
-      text-align: right;
-    }
-    li {
-      display: inline-block;
-      margin-left: 40px;
-    }
-    a {
-      text-transform: uppercase;
-      padding: 0;
-    }
+  }
+  .nav-main ul {
+    text-align: right;
+  }
+  .nav-main li {
+    display: inline-block;
+    margin-left: 40px;
+  }
+  .nav-main a {
+    text-transform: uppercase;
+    padding: 0;
   }
   .work-column-lg {
     display: block;
@@ -435,16 +651,15 @@ footer .copy {
   }
   form {
     padding-bottom: 40px;
-    p {
-      // display: inline-block;
-      float: left;
-    }
-    .button-send {
-      float: right;
-      margin-top: 0;
-    }
   }
-
+  form p {
+    display: inline-block;
+    float: left;
+  }
+  form .button-send {
+    float: right;
+    margin-top: 0;
+  }
   .text-center form p,
   h2 form p,
   h3 form p,

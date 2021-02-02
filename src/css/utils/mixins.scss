@@ -5,13 +5,11 @@
 }
 @mixin fontSize($fontSize) {
   font-size: $fontSize;
-  font-size: ($fontSize/$fontsize_std_h1) rem;
+  font-size: ($fontSize/$fontsize_std) * 1rem;
 }
 @mixin before_after_size($width, $height) {
   width: $width;
   height: $height;
-  content: "";
-  position: absolute;
 }
 // tranforms======
 @mixin translate() {
@@ -20,11 +18,11 @@
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-@mixin scale($x, $y) {
-  -webkit-transform: scale($x, $y);
-  -ms-transform: scale($x, $y);
-  -o-transform: scale($x, $y);
-  transform: scale($x, $y);
+@mixin scale($scale) {
+  -webkit-transform: scale($scale);
+  -ms-transform: scale($scale);
+  -o-transform: scale($scale);
+  transform: scale($scale);
 }
 
 // position======

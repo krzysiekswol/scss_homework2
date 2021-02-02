@@ -1,44 +1,4 @@
-.text-center,
-.social-wrap,
-h2,
-h3,
-.nav-main {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
-section .text-center p,
-section h2 p,
-section h3 p,
-section .nav-main p {
-  padding: 0 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-h2 {
-  position: $position_std;
-  font-family: "Roboto";
-  text-transform: uppercase;
-  padding-bottom: 14px;
-  margin-bottom: 30px;
-  @include fontSize(22px);
-  &::after,
-  &::after {
-    @include before_after_size(72px, 3px);
-    display: block;
-    left: -webkit-calc(50% - 36px);
-    left: calc(50% - 36px);
-    bottom: 0px;
-    background: #d07c7c;
-  }
-}
-
-h3 {
-  @extend h2;
-  text-transform: none;
-}
-h1 {
-  @extend .title-main;
-  @include fontSize(22px);
-  display: inline-block;
-}
+$fontsize_std: 16px;
+$font: "Roboto", sans-serif;
