@@ -2,3 +2,35 @@
 
 $fontsize_std: 16px;
 $font: "Roboto", sans-serif;
+
+// Headings =============
+
+h1 {
+  line-height: 1.2;
+  @include fontSize(22px);
+  display: inline-block;
+}
+
+h2 {
+  position: relative;
+  font-family: $font;
+  text-transform: uppercase;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  @include fontSize(22px);
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 72px;
+    height: 3px;
+    left: -webkit-calc(50% - 36px);
+    left: calc(50% - 36px);
+    bottom: 0px;
+    background: $bgc-std-color;
+  }
+}
+h3 {
+  @extend h2;
+  text-transform: none;
+}
